@@ -26,7 +26,7 @@ class Request {
   async getUserInfo(id) {
     // 请求参数
     return {
-      user_id,
+      user_id: id,
     };
   }
 }
