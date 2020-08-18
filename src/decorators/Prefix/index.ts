@@ -1,5 +1,5 @@
 export default (prefix: string) => {
   return (target) => {
-    target.prototype.domain = prefix;
+    target.prototype._PREFIX = prefix;
   };
 };

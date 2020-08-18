@@ -15,7 +15,7 @@ const cssLoaders = [
 
 module.exports = {
   entry: {
-    editor: _('../src/index.ts'),
+    dequester: _('../src/app.ts'),
   },
   resolve: {
     extensions: ['.ts', '.js', '.json'],

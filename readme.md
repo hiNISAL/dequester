@@ -36,3 +36,25 @@ const request = new Request();
 // do request
 const info = await request.getUserInfo(996);
 ```
+
+## 装饰器
+
+### Get
+
+### Post
+
+### Patch
+
+### Delete
+
+### Put
+
+### After
+
+### Before
+
+### BodyType
+
+### Headers
+
+### Prefix
