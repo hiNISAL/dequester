@@ -21,7 +21,7 @@ class Request {
   }
 
   @Get('/sth2/:id')
-  public getList() {
+  public async getList() {
     return ReqOpt({
       params: {
         id: 123,
@@ -40,4 +40,6 @@ class Request {
 const request = new Request();
 
 request.getUserInfo();
-request.getList();
+request.getList().then((res) => {
+  console.log('getList', res);
+});

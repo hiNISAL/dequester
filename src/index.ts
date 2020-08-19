@@ -11,3 +11,7 @@ export {
   Put as Put,
   Delete as Delete,
 } from './decorators/Methods';
+
+export default {
+
+};

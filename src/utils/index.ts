@@ -4,11 +4,15 @@ export const setMethodTag = (tag, value) => {
   }
 };
 
+// ----------------------------------------------------------------------------
+
 export const setClassTag = (tag, value) => {
   return (target) => {
     target.prototype[tag] = value;
   };
 };
+
+// ----------------------------------------------------------------------------
 
 export const setCommonTag = (methodTag, value, classTag?) => {
   return (target, ...args) => {
@@ -19,4 +23,10 @@ export const setCommonTag = (methodTag, value, classTag?) => {
 
     target.prototype[classTag || methodTag] = value;
   }
+};
+
+// ----------------------------------------------------------------------------
+
+export const clone = (object) => {
+  return JSON.parse(JSON.stringify(object));
 };

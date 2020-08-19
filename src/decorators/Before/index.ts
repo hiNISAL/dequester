@@ -1,5 +1,5 @@
 import { setCommonTag } from '@/utils';
 
 export default (fn) => {
-  return setCommonTag('_BEFORE', fn, '_BEFORE_EACH');
+  return setCommonTag('_BEFORE', fn, '_EACH_BEFORE');
 };
