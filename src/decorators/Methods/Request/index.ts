@@ -51,6 +51,8 @@ export default (method, path, prefix) => {
         _EACH_AFTER = () => {},
         // 配置信息
         _EACH_CONFIG = {},
+        // 取消钩子
+        _EACH_CANCEL = () => {},
       } = target;
 
       // 取到方法上装饰的信息
@@ -67,6 +69,8 @@ export default (method, path, prefix) => {
         _BODY_TYPE = {},
         // 配置信息
         _CONFIG = {},
+        // 取消钩子
+        _CANCEL = _EACH_CANCEL,
       } = bck;
 
       // ----------------------------------------------------------------------------
@@ -107,6 +111,8 @@ export default (method, path, prefix) => {
           useBefore = true,
           // 是否使用绑定在method上的后置钩子
           useAfter = true,
+          // 取消方法
+          cancel,
         } = (queries.options as iReqOpt);
 
         // 合并头
@@ -129,6 +135,7 @@ export default (method, path, prefix) => {
         // 覆盖小钩子
         _AFTER = after;
         _BEFORE = before;
+        _CANCEL = cancel || _CANCEL;
       }
 
       // 构建出 options 抛给请求库处理请求
@@ -138,6 +145,7 @@ export default (method, path, prefix) => {
         url: `${prefix || _PREFIX || ''}${usePath}`,
         headers: _HEADERS,
         data: queries,
+        cancel: _CANCEL,
       };
 
       // 看看是不是要执行大前置

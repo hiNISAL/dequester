@@ -33,6 +33,9 @@ class Request {
       headers: {
         abcc: '123',
       },
+      cancel(cancelToken) {
+
+      },
     });
   }
 }

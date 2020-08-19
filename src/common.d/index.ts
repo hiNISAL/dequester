@@ -21,4 +21,6 @@ export interface iReqOpt {
   useBefore?: Function;
   // 是否使用绑定在method上的后置钩子
   useAfter?: Function;
+  // 取消请求
+  cancel?: Function;
 }
