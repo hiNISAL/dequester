@@ -1,10 +1,5 @@
-export default (fn) => {
-  return (target, ...args) => {
-    if (args[1]) {
-      target[name]._BEFORE = fn;
-      return;
-    }
+import { setCommonTag } from '@/utils';
 
-    target.prototype._BEFORE_EACH = fn;
-  }
+export default (fn) => {
+  return setCommonTag('_BEFORE', fn, '_BEFORE_EACH');
 };

@@ -1,5 +1,5 @@
+import { setMethodTag } from '@/utils';
+
 export default (type) => {
-  return (target, name) => {
-    target[name]._BODY_TYPE = type;
-  }
+  return setMethodTag('_BODY_TYPE', type);
 };

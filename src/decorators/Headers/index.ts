@@ -1,5 +1,5 @@
+import { setMethodTag } from '@/utils';
+
 export default (headers) => {
-  return (target, name) => {
-    target[name]._HEADERS = headers;
-  }
+  return setMethodTag('_HEADERS', headers);
 };

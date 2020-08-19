@@ -1,5 +1,5 @@
+import { setClassTag } from '@/utils';
+
 export default (prefix: string) => {
-  return (target) => {
-    target.prototype._PREFIX = prefix;
-  };
+  return setClassTag('_PREFIX', prefix);
 };
