@@ -1,8 +1,8 @@
 import { DequesterOptions } from '@/Options';
 import { iReqOpt } from '@/common.d';
 import request from '@/request';
+import { getPath } from './helpers';
 import defaultConfig from '@/config.default';
-import { clone } from '@/utils';
 
 // ----------------------------------------------------------------------------
 
@@ -10,21 +10,6 @@ let config = Object.assign({}, defaultConfig);
 
 export const setConfig = (newConfig) => {
   config = Object.assign(newConfig);
-};
-
-// ----------------------------------------------------------------------------
-
-/**
- * 根据占位符处理路径
- * @param path 
- * @param placeholder 
- */
-const getPath = (path: string, placeholder: { [propName: string]: string; } = {}) => {
-  for (const [k, v] of Object.entries(placeholder)) {
-    path = path.replace(`:${k}`, v);
-  }
-
-  return path;
 };
 
 // ----------------------------------------------------------------------------
@@ -89,6 +74,25 @@ export default (method, path, prefix) => {
 
       // ----------------------------------------------------------------------------
 
+      // 处理一次参数内容 人工重载一下
+      if (Array.isArray(queries)) {
+        const [data, params, headers, cancel] = queries;
+
+        queries = data;
+
+        usePath = getPath(usePath, params);
+
+        // 合并头
+        _HEADERS = {
+          ..._HEADERS,
+          ...headers,
+        };
+
+        _CANCEL = cancel || _CANCEL;
+      }
+
+      // ----------------------------------------------------------------------------
+
       // 如果是用 ReqOpt 构建的对象
       if (queries instanceof DequesterOptions) {
         // 娶到配置信息
@@ -146,6 +150,7 @@ export default (method, path, prefix) => {
         headers: _HEADERS,
         data: queries,
         cancel: _CANCEL,
+        bodyType: _BODY_TYPE,
       };
 
       // 看看是不是要执行大前置

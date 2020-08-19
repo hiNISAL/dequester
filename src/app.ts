@@ -1,3 +1,4 @@
+import { Post } from './decorators/Methods';
 import { Prefix, Get, Headers, BodyType, ReqOpt, After, Before } from './index';
 
 @Prefix('http://baidu.com')
@@ -38,6 +39,24 @@ class Request {
       },
     });
   }
+
+  @Post('/aabbcc/:id')
+  public async getSth() {
+    return [
+      {
+        a: 1
+      },
+      {
+        id: 2,
+      },
+      {
+        ['Content-Type']: 'application/json',
+      },
+      (cancel) => {
+        console.log(cancel);
+      },
+    ]
+  }
 }
 
 const request = new Request();
@@ -46,3 +65,6 @@ request.getUserInfo();
 request.getList().then((res) => {
   console.log('getList', res);
 });
+request.getSth().then(res => {
+  console.log('getSth', res);
+})

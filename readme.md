@@ -60,3 +60,5 @@ const info = await request.getUserInfo(996);
 ### Prefix
 
 ### Config
+
+### Cancel
