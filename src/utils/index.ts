@@ -12,8 +12,8 @@ export const setClassTag = (tag, value) => {
 
 export const setCommonTag = (methodTag, value, classTag?) => {
   return (target, ...args) => {
-    if (args[1]) {
-      target[name][methodTag] = value;
+    if (args[0]) {
+      target[args[0]][methodTag] = value;
       return;
     }
 
