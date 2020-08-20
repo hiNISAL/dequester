@@ -38,6 +38,8 @@ export default (method, path, prefix) => {
         _EACH_CONFIG = {},
         // 取消钩子
         _EACH_CANCEL = () => {},
+        // 错误钩子
+        _EACH_ERROR = () => {},
       } = target;
 
       // 取到方法上装饰的信息
@@ -56,6 +58,8 @@ export default (method, path, prefix) => {
         _CONFIG = {},
         // 取消钩子
         _CANCEL = _EACH_CANCEL,
+        // 错误钩子
+        _ERROR = () => {},
       } = bck;
 
       // ----------------------------------------------------------------------------
@@ -117,6 +121,8 @@ export default (method, path, prefix) => {
           useAfter = true,
           // 取消方法
           cancel,
+          // 错误钩子
+          error,
         } = (queries.options as iReqOpt);
 
         // 合并头
@@ -140,6 +146,7 @@ export default (method, path, prefix) => {
         _AFTER = after;
         _BEFORE = before;
         _CANCEL = cancel || _CANCEL;
+        _ERROR = error || _ERROR;
       }
 
       // 构建出 options 抛给请求库处理请求
@@ -164,7 +171,14 @@ export default (method, path, prefix) => {
       }
 
       // 跑请求
-      let result = await request(options);
+      let result: any = null;
+      try {
+        result = await request(options)
+      } catch (e) {
+        await _EACH_ERROR(e);
+        await _ERROR(e);
+        throw Error(e);
+      }
 
       // 看看要不要执行大后置
       if (needUseEachAfter) {

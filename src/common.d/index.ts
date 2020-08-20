@@ -23,4 +23,6 @@ export interface iReqOpt {
   useAfter?: Function;
   // 取消请求
   cancel?: Function;
+  // 错误钩子
+  error?: Function;
 }
