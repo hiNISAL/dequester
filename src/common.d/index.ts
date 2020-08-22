@@ -25,4 +25,8 @@ export interface iReqOpt {
   cancel?: Function;
   // 错误钩子
   error?: Function;
+  // 额外扩展参数
+  extension?: any;
+  // jsonp 回调前缀
+  jsonpCallbackPrefix?: string;
 }

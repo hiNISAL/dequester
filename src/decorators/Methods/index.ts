@@ -19,3 +19,7 @@ export const Delete = (path, prefix = '') => {
 export const Put = (path, prefix = '') => {
   return request('PUT', path, prefix);
 };
+
+export const JSONP = (path, prefix = '') => {
+  return request('JSONP', path, prefix);
+};

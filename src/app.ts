@@ -1,10 +1,11 @@
 import { Post } from './decorators/Methods';
-import { Prefix, Get, Headers, BodyType, ReqOpt, After, Before } from './index';
+import { Prefix, Get, Headers, BodyType, ReqOpt, After, Extension, JSONPCallbackPrefix } from './index';
 
 @Prefix('http://baidu.com')
 @After(() => {
   console.log(123);
 })
+@JSONPCallbackPrefix('jsonppp')
 class Request {
   @Get('/sth')
   @Headers({
@@ -37,10 +38,18 @@ class Request {
       cancel(cancelToken) {
 
       },
+      extension: {
+        ddd: 66
+      },
     });
   }
 
   @Post('/aabbcc/:id')
+  @JSONPCallbackPrefix('jsonppps')
+  @Extension({
+    a: 1,
+    b: 2,
+  })
   public async getSth() {
     return [
       {

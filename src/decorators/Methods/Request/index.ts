@@ -40,6 +40,10 @@ export default (method, path, prefix) => {
         _EACH_CANCEL = () => {},
         // 错误钩子
         _EACH_ERROR = () => {},
+        // 额外扩展参数
+        _EACH_EXTENSION = {},
+        // jsonp callback 前缀
+        _EACH_JSONP_CALLBACK_PREFIX = '',
       } = target;
 
       // 取到方法上装饰的信息
@@ -60,6 +64,10 @@ export default (method, path, prefix) => {
         _CANCEL = _EACH_CANCEL,
         // 错误钩子
         _ERROR = () => {},
+        // 额外扩展参数
+        _EXTENSION = {},
+        // jsonp callback 前缀
+        _JSONP_CALLBACK_PREFIX = '',
       } = bck;
 
       // ----------------------------------------------------------------------------
@@ -96,9 +104,12 @@ export default (method, path, prefix) => {
       }
 
       // ----------------------------------------------------------------------------
+      let ext = {};
+      let reqOpt = {};
 
       // 如果是用 ReqOpt 构建的对象
       if (queries instanceof DequesterOptions) {
+        reqOpt = queries.options;
         // 娶到配置信息
         const {
           // 头
@@ -123,6 +134,10 @@ export default (method, path, prefix) => {
           cancel,
           // 错误钩子
           error,
+          // 额外扩展参数
+          extension,
+          // jsonp 回调前缀
+          jsonpCallbackPrefix = '',
         } = (queries.options as iReqOpt);
 
         // 合并头
@@ -147,6 +162,8 @@ export default (method, path, prefix) => {
         _BEFORE = before;
         _CANCEL = cancel || _CANCEL;
         _ERROR = error || _ERROR;
+        ext = extension || ext;
+        _JSONP_CALLBACK_PREFIX = jsonpCallbackPrefix || _JSONP_CALLBACK_PREFIX || _EACH_JSONP_CALLBACK_PREFIX;
       }
 
       // 构建出 options 抛给请求库处理请求
@@ -158,6 +175,15 @@ export default (method, path, prefix) => {
         data: queries,
         cancel: _CANCEL,
         bodyType: _BODY_TYPE,
+        extension: {
+          extension: ext,
+          _EACH_EXTENSION,
+          _EXTENSION,
+        },
+        jsonp: _JSONP_CALLBACK_PREFIX,
+        _SOURCE: {
+          reqOpt,
+        },
       };
 
       // 看看是不是要执行大前置
