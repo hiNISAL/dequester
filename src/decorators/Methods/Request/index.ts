@@ -2,15 +2,6 @@ import { DequesterOptions } from '@/Options';
 import { iReqOpt } from '@/common.d';
 import request from '@/request';
 import { getPath } from './helpers';
-import defaultConfig from '@/config.default';
-
-// ----------------------------------------------------------------------------
-
-let config = Object.assign({}, defaultConfig);
-
-export const setConfig = (newConfig) => {
-  config = Object.assign(newConfig);
-};
 
 // ----------------------------------------------------------------------------
 
@@ -34,8 +25,6 @@ export default (method, path, prefix) => {
         _EACH_BEFORE = () => {},
         // 后置拦截器
         _EACH_AFTER = () => {},
-        // 配置信息
-        _EACH_CONFIG = {},
         // 取消钩子
         _EACH_CANCEL = () => {},
         // 错误钩子
@@ -44,6 +33,8 @@ export default (method, path, prefix) => {
         _EACH_EXTENSION = {},
         // jsonp callback 前缀
         _EACH_JSONP_CALLBACK_PREFIX = '',
+        // 适配器
+        _EACH_ADAPTER,
       } = target;
 
       // 取到方法上装饰的信息
@@ -58,8 +49,6 @@ export default (method, path, prefix) => {
         _HEADERS = {},
         // body类型
         _BODY_TYPE = {},
-        // 配置信息
-        _CONFIG = {},
         // 取消钩子
         _CANCEL = _EACH_CANCEL,
         // 错误钩子
@@ -68,6 +57,8 @@ export default (method, path, prefix) => {
         _EXTENSION = {},
         // jsonp callback 前缀
         _JSONP_CALLBACK_PREFIX = '',
+        // 适配器
+        _ADAPTER,
       } = bck;
 
       // ----------------------------------------------------------------------------
@@ -76,13 +67,6 @@ export default (method, path, prefix) => {
       let needUseEachAfter = true;
       let needUseBefore = true;
       let needUseAfter = true;
-
-      // 处理配置信息
-      const conf = {
-        ...config,
-        ..._EACH_CONFIG,
-        ..._CONFIG,
-      };
 
       // ----------------------------------------------------------------------------
 
@@ -106,6 +90,7 @@ export default (method, path, prefix) => {
       // ----------------------------------------------------------------------------
       let ext = {};
       let reqOpt = {};
+      let finalAdapter = _ADAPTER || _EACH_ADAPTER;
 
       // 如果是用 ReqOpt 构建的对象
       if (queries instanceof DequesterOptions) {
@@ -138,6 +123,8 @@ export default (method, path, prefix) => {
           extension,
           // jsonp 回调前缀
           jsonpCallbackPrefix = '',
+          // 请求适配器
+          adapter,
         } = (queries.options as iReqOpt);
 
         // 合并头
@@ -164,11 +151,11 @@ export default (method, path, prefix) => {
         _ERROR = error || _ERROR;
         ext = extension || ext;
         _JSONP_CALLBACK_PREFIX = jsonpCallbackPrefix || _JSONP_CALLBACK_PREFIX || _EACH_JSONP_CALLBACK_PREFIX;
+        finalAdapter = adapter || finalAdapter;
       }
 
       // 构建出 options 抛给请求库处理请求
       let options = {
-        config: conf,
         method,
         url: `${prefix || _PREFIX || ''}${usePath}`,
         headers: _HEADERS,
@@ -184,6 +171,7 @@ export default (method, path, prefix) => {
         _SOURCE: {
           reqOpt,
         },
+        adapter: finalAdapter,
       };
 
       // 看看是不是要执行大前置

@@ -7,6 +7,8 @@ export { default as After } from './decorators/After';
 export { default as Err } from './decorators/Error';
 export { default as Extension } from './decorators/Extension';
 export { default as JSONPCallbackPrefix } from './decorators/JSONPCallbackPrefix';
+export { default as Adapter } from './decorators/Adapter';
+export { useAdapter as useAdapter } from './request';
 export {
   Get as Get,
   Post as Post,

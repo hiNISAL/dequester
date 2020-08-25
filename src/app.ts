@@ -1,5 +1,12 @@
 import { Post } from './decorators/Methods';
-import { Prefix, Get, Headers, BodyType, ReqOpt, After, Extension, JSONPCallbackPrefix } from './index';
+import {
+  Prefix, Get, Headers, 
+  BodyType, ReqOpt, After, Extension, JSONPCallbackPrefix,
+  useAdapter,
+} from './index';
+import flyio from './adapters/flyio';
+
+useAdapter(flyio);
 
 @Prefix('http://baidu.com')
 @After(() => {

@@ -29,4 +29,6 @@ export interface iReqOpt {
   extension?: any;
   // jsonp 回调前缀
   jsonpCallbackPrefix?: string;
+  // 请求适配器
+  adapter: Function|null|undefined,
 }

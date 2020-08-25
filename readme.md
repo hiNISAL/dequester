@@ -17,7 +17,10 @@ npm i dequester -S
 ## 使用
 
 ```ts
-import { Post, Prefix, BodyType } from 'dequester';
+import { Post, Prefix, BodyType, useAdapter } from 'dequester';
+import { flyio } from 'dequester/adapter/flyio';
+
+useAdapter(flyio); // 注册一个适配器 全局只需注册一次
 
 @Prefix('https://domain.com')
 class Request {
