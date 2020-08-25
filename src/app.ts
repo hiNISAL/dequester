@@ -4,7 +4,7 @@ import {
   BodyType, ReqOpt, After, Extension, JSONPCallbackPrefix,
   useAdapter,
 } from './index';
-import flyio from './adapters/flyio';
+import flyio from './adapters/flyio-mp';
 
 useAdapter(flyio);
 

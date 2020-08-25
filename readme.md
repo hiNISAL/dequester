@@ -6,21 +6,27 @@
 
 `dequester` 是跨平台的上层请求框架，支持 `Node`、`浏览器`、`小程序`，让开发者更侧重请求在业务逻辑上的表述能力。
 
-利用装饰器描述请求，底层默认采用 [flyio](https://wendux.github.io/dist/#/doc/flyio/readme) 驱动，可以切换成 `axios`、`jquery` 提供的请求能力，也可自定义。
-
 ## 安装
 
 ```shell
 npm i dequester -S
 ```
 
+安装对应的适配器依赖（不需要全部安装，如底层想使用 `axios` 驱动，只需要安装 `axios`）。
+
+```shell
+npm i axios -s
+npm i flyio -s
+npm i jquery -s
+```
+
 ## 使用
 
 ```ts
 import { Post, Prefix, BodyType, useAdapter } from 'dequester';
-import { flyio } from 'dequester/adapter/flyio';
+import { axios } from 'dequester/adapter/axios';
 
-useAdapter(flyio); // 注册一个适配器 全局只需注册一次
+useAdapter(axios); // 注册一个适配器 全局只需注册一次
 
 @Prefix('https://domain.com')
 class Request {
@@ -62,6 +68,6 @@ const info = await request.getUserInfo(996);
 
 ### Prefix
 
-### Config
-
 ### Cancel
+
+### Adapter
