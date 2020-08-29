@@ -1,8 +1,8 @@
 {
   "name": "dequester",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "HTTP frame for Client(Node.js、Browser、Mini Program)",
-  "main": "./dist/index.js",
+  "main": "./dist/dequester.js",
   "scripts": {
     "build": "cross-env NODE_ENV=production webpack --config ./build/webpack.config.production.js && rm -rf ./adapter && tsc",
     "dev": "cross-env NODE_ENV=development webpack-dev-server --config ./build/webpack.config.dev.js",

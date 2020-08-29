@@ -13,13 +13,12 @@
     "module": "es2015",
     "moduleResolution": "node",
     "baseUrl": "./",
-    "outDir": "./dist/",
+    "outDir": "./adapter/",
     "paths": {
       "@/*": [
         "src/*"
       ]
     },
-    // "allowJs": true,
     "declaration": true,
     "allowSyntheticDefaultImports": true,
     "noImplicitAny": false,
@@ -30,7 +29,7 @@
     "noImplicitThis": false,
   },
   "include": [
-    "./src/**/*"
+    "./src/adapters/**/*"
   ],
   "exclude": [
     "node_modules",
