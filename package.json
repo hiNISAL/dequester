@@ -1,10 +1,10 @@
 {
   "name": "dequester",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "HTTP frame for Client(Node.js、Browser、Mini Program)",
   "main": "app.js",
   "scripts": {
-    "build": "cross-env NODE_ENV=production webpack --config ./build/webpack.config.production.js && tsc",
+    "build": "cross-env NODE_ENV=production webpack --config ./build/webpack.config.production.js && rm -rf ./adapter && tsc",
     "dev": "cross-env NODE_ENV=development webpack-dev-server --config ./build/webpack.config.dev.js",
     "start": "npm run dev"
   },
@@ -55,6 +55,7 @@
     "webpack-merge": "^4.2.1"
   },
   "dependencies": {
+    "axios-jsonp": "^1.0.4",
     "flyio": "^0.6.14",
     "qs": "^6.9.4"
   }

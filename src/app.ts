@@ -1,7 +1,6 @@
-import { Post } from './decorators/Methods';
+import { JSONP, Post } from './decorators/Methods';
 import {
   Prefix, Get, Headers, 
-  BodyType, ReqOpt, After, Extension, JSONPCallbackPrefix,
   useAdapter,
 } from './index';
 import axios from './adapters/axios';
@@ -18,6 +17,11 @@ class Weather {
       city,
     };
   }
+
+  @JSONP('/a')
+  async jsonpTest() {
+    return {};
+  }
 }
 
 const request = new Weather();
@@ -25,3 +29,5 @@ const request = new Weather();
 request.get('宁波').then((res: any) => {
   console.log(res.data);
 });
+
+request.jsonpTest();

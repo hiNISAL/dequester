@@ -33,6 +33,8 @@ export default (method, path, prefix) => {
         _EACH_EXTENSION = {},
         // jsonp callback 前缀
         _EACH_JSONP_CALLBACK_PREFIX = '',
+        // jsonp callback 参数名
+        _EACH_JSONP_CALLBACK_PARAM = '',
         // 适配器
         _EACH_ADAPTER,
       } = target;
@@ -56,7 +58,9 @@ export default (method, path, prefix) => {
         // 额外扩展参数
         _EXTENSION = {},
         // jsonp callback 前缀
-        _JSONP_CALLBACK_PREFIX = '',
+        _JSONP_CALLBACK_PREFIX = _EACH_JSONP_CALLBACK_PREFIX,
+        // jsonp callback 参数名
+        _JSONP_CALLBACK_PARAM = _EACH_JSONP_CALLBACK_PARAM,
         // 适配器
         _ADAPTER,
       } = bck;
@@ -123,6 +127,8 @@ export default (method, path, prefix) => {
           extension,
           // jsonp 回调前缀
           jsonpCallbackPrefix = '',
+          // jsonp 请求参数名
+          jsonpCallbackParam = '',
           // 请求适配器
           adapter,
         } = (queries.options as iReqOpt);
@@ -151,6 +157,7 @@ export default (method, path, prefix) => {
         _ERROR = error || _ERROR;
         ext = extension || ext;
         _JSONP_CALLBACK_PREFIX = jsonpCallbackPrefix || _JSONP_CALLBACK_PREFIX || _EACH_JSONP_CALLBACK_PREFIX;
+        _JSONP_CALLBACK_PARAM = jsonpCallbackParam || _JSONP_CALLBACK_PARAM || _EACH_JSONP_CALLBACK_PARAM;
         finalAdapter = adapter || finalAdapter;
       }
 
@@ -167,7 +174,8 @@ export default (method, path, prefix) => {
           _EACH_EXTENSION,
           _EXTENSION,
         },
-        jsonp: _JSONP_CALLBACK_PREFIX,
+        jsonpCallbackPrefix: _JSONP_CALLBACK_PREFIX,
+        jsonpCallbackParam: _JSONP_CALLBACK_PARAM,
         _SOURCE: {
           reqOpt,
         },
