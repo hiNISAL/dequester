@@ -1,6 +1,6 @@
 {
   "name": "dequester",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "HTTP frame for Client(Node.js、Browser、Mini Program)",
   "main": "./dist/dequester.js",
   "scripts": {
