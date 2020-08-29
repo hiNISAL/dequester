@@ -1,6 +1,6 @@
-import { DequesterOptions } from '@/Options';
-import { iReqOpt } from '@/common.d';
-import request from '@/request';
+import { DequesterOptions } from '../../../Options';
+import { iReqOpt } from '../../../common.d';
+import request from '../../../request';
 import { getPath } from './helpers';
 
 // ----------------------------------------------------------------------------
