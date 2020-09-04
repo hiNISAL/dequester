@@ -2,11 +2,12 @@
   "name": "dequester",
   "version": "0.1.5",
   "description": "HTTP frame for Client(Node.js、Browser、Mini Program)",
-  "main": "./dist/dequester.js",
+  "main": "./dist/index.js",
   "scripts": {
     "build": "cross-env NODE_ENV=production webpack --config ./build/webpack.config.production.js && rm -rf ./adapter && tsc",
     "dev": "cross-env NODE_ENV=development webpack-dev-server --config ./build/webpack.config.dev.js",
-    "start": "npm run dev"
+    "start": "npm run dev",
+    "tsc": "rm -rf ./dist && rm -rf ./adapter && tsc --project tsconfig.adapter.json && tsc"
   },
   "repository": {
     "type": "git",
