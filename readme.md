@@ -1,9 +1,5 @@
 # dequester
 
-> 项目构建中 还无法使用
-> 项目构建中 还无法使用
-> 项目构建中 还无法使用
-
 `dequester` 是跨平台的上层请求框架，支持 `Node`、`浏览器`、`小程序`，让开发者更侧重请求在业务逻辑上的表述能力。
 
 ## 安装
@@ -24,9 +20,9 @@ npm i jquery -s
 
 ```ts
 import { Post, Prefix, BodyType, useAdapter } from 'dequester';
-import { axios } from 'dequester/adapter/axios';
+import axiosAdapter from 'dequester/adapter/axios';
 
-useAdapter(axios); // 注册一个适配器 全局只需注册一次
+useAdapter(axiosAdapter); // 注册一个适配器 全局只需注册一次
 
 @Prefix('https://domain.com')
 class Request {
@@ -45,6 +41,41 @@ const request = new Request();
 // do request
 const info = await request.getUserInfo(996);
 ```
+
+## 适配器
+
+`dequester` 只是一个收集请求信息的工具，处理请求依然以来第三方框架。
+
+目前 `dequester` 只提供了 最简单的 `axios` 适配器。
+
+通过这套机制，可以让 `dequester` 在任何支持 `装饰器` 特性的环境中工作。
+
+### 注册适配器
+
+```ts
+import { useAdapter } from 'dequester';
+import axiosAdapter from 'dequester/adapter/axios';
+
+useAdapter(axiosAdapter); // 注册一个适配器 全局只需注册一次
+```
+
+### 编写适配器
+
+适配器可以自己编写，其本身只是个函数。
+
+```ts
+import { useAdapter } from 'dequester';
+
+const adapter = async (options) => {
+  const res = await request(options);
+
+  return res;
+};
+
+useAdapter(adapter);
+```
+
+函数的参数就是被 `requester` 收集处理后的请求信息。
 
 ## 装饰器
 
