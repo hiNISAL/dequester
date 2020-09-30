@@ -102,3 +102,7 @@ useAdapter(adapter);
 ### Cancel
 
 ### Adapter
+
+## 方法
+
+### useAdapter
