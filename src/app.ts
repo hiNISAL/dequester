@@ -4,8 +4,8 @@ import {
   useAdapter,
 } from './index';
 import axios from './adapters/axios';
-
-useAdapter(axios);
+import $ from './adapters/jquery';
+useAdapter($);
 
 const domain = 'http://wthrcdn.etouch.cn'
 
@@ -18,10 +18,10 @@ class Weather {
     };
   }
 
-  @JSONP('/a')
-  async jsonpTest() {
-    return {};
-  }
+  // @JSONP('/a')
+  // async jsonpTest() {
+  //   return {};
+  // }
 }
 
 const request = new Weather();
@@ -30,4 +30,4 @@ request.get('宁波').then((res: any) => {
   console.log(res.data);
 });
 
-request.jsonpTest();
+// request.jsonpTest();
