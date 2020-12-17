@@ -1,6 +1,6 @@
 import { JSONP, Post } from './decorators/Methods';
 import {
-  Prefix, Get, Headers, 
+  Prefix, Get, Headers,
   useAdapter,
 } from './index';
 import axios from './adapters/axios';
@@ -12,7 +12,7 @@ const domain = 'http://wthrcdn.etouch.cn'
 @Prefix(domain)
 class Weather {
   @Get('/weather_mini')
-  async get(city) {
+  async get(city: string) {
     return {
       city,
     };

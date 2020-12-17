@@ -1,21 +1,21 @@
-export const setMethodTag = (tag, value) => {
-  return (target, name) => {
+export const setMethodTag = (tag: any, value: any) => {
+  return (target: any, name: any) => {
     target[name][tag] = value;
   }
 };
 
 // ----------------------------------------------------------------------------
 
-export const setClassTag = (tag, value) => {
-  return (target) => {
+export const setClassTag = (tag: any, value: any) => {
+  return (target: any) => {
     target.prototype[tag] = value;
   };
 };
 
 // ----------------------------------------------------------------------------
 
-export const setCommonTag = (methodTag, value, classTag?) => {
-  return (target, ...args) => {
+export const setCommonTag = (methodTag: any, value: any, classTag?: any) => {
+  return (target: any, ...args: any[]) => {
     if (args[0]) {
       target[args[0]][methodTag] = value;
       return;
@@ -27,6 +27,6 @@ export const setCommonTag = (methodTag, value, classTag?) => {
 
 // ----------------------------------------------------------------------------
 
-export const clone = (object) => {
+export const clone = (object: any) => {
   return JSON.parse(JSON.stringify(object));
 };

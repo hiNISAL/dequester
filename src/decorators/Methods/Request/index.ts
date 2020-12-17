@@ -5,15 +5,15 @@ import { getPath } from './helpers';
 
 // ----------------------------------------------------------------------------
 
-export default (method, path, prefix) => {
-  return (target, name, desc) => {
+export default (method: any, path: any, prefix: any) => {
+  return (target: any, name: any, desc: any) => {
     // 保留参数
     const bck = target[name];
 
     // ----------------------------------------------------------------------------
 
     // 重写方法
-    desc.value = async (...args) => {
+    desc.value = async (...args: any[]) => {
       let queries = await bck(...args);
       let usePath = path;
 

@@ -4,6 +4,6 @@ export class DequesterOptions {
   ) {}
 };
 
-export default (options) => {
+export default (options: any) => {
   return new DequesterOptions(options);
 };

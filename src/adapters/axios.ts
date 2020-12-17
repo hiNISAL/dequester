@@ -6,7 +6,7 @@ const getMethod = (method: string) => {
   return (method || '').toLocaleUpperCase();
 };
 
-export default async (options) => {
+export default async (options: any) => {
   let queryString = '';
   const method = getMethod(options.method);
 
