@@ -1,6 +1,6 @@
 {
   "name": "dequester",
-  "version": "0.1.8",
+  "version": "0.1.9",
   "description": "HTTP frame for Client(Node.js、Browser、Mini Program)",
   "main": "./src/index.ts",
   "scripts": {
