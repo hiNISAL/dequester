@@ -9,7 +9,7 @@ export { default as Extension } from './decorators/Extension';
 export { default as JSONPCallbackPrefix } from './decorators/JSONPCallbackPrefix';
 export { default as JSONPCallbackParam } from './decorators/JSONPCallbackParam';
 export { default as Adapter } from './decorators/Adapter';
-export { useAdapter as useAdapter } from './request';
+export { useAdapter as useAdapter } from './Request';
 export {
   Get as Get,
   Post as Post,

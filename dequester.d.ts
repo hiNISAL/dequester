@@ -9,7 +9,7 @@ export { default as Extension } from './src/decorators/Extension';
 export { default as JSONPCallbackPrefix } from './src/decorators/JSONPCallbackPrefix';
 export { default as JSONPCallbackParam } from './src/decorators/JSONPCallbackParam';
 export { default as Adapter } from './src/decorators/Adapter';
-export { useAdapter as useAdapter } from './src/request';
+export { useAdapter as useAdapter } from './src/Request';
 export { Get as Get, Post as Post, Patch as Patch, Put as Put, Delete as Delete, JSONP as JSONP, } from './src/decorators/Methods';
 declare const _default: {};
 export default _default;
