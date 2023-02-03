@@ -14,7 +14,7 @@ const cssLoaders = [
 
 module.exports = {
   entry: {
-    dequester: _('../src/app.ts'),
+    dequester: _('../src/test.ts'),
   },
   resolve: {
     extensions: ['.ts', '.js', '.json'],

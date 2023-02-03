@@ -1,6 +1,6 @@
 {
   "name": "dequester",
-  "version": "0.1.9",
+  "version": "0.1.10",
   "description": "HTTP frame for Client(Node.js、Browser、Mini Program)",
   "main": "./src/index.ts",
   "scripts": {
@@ -45,7 +45,6 @@
     "friendly-errors-webpack-plugin": "^1.7.0",
     "html-loader": "^0.5.5",
     "html-webpack-plugin": "^3.2.0",
-    "node-sass": "^4.12.0",
     "sass-loader": "^7.1.0",
     "style-loader": "^0.23.1",
     "ts-loader": "^6.2.2",
